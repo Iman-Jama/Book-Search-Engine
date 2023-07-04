@@ -14,5 +14,10 @@
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^5.1.0"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.7.16",
+    "apollo-server-express": "^3.12.0",
+    "mongoose": "^7.3.1"
   }
 }
