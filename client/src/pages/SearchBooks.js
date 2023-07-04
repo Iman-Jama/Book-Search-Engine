@@ -9,9 +9,8 @@ import {
 } from 'react-bootstrap';
 
 import Auth from '../utils/auth';
-import { saveBook, searchGoogleBooks } from '../utils/API';
+import { searchGoogleBooks } from '../utils/API';
 import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
-import { Link } from 'react-router-dom';
 
 import { useMutation } from '@apollo/client';
 import { SAVE_BOOK } from '../utils/mutations';
@@ -73,16 +72,11 @@ const handleSaveBook = async (bookId) => {
   }
 
   try {
-    const response = await saveBookMutation({
+    const { data } = await saveBookMutation({
       variables: {
-        book: bookToSave,
+        bookData: bookToSave,
       },
     });
-
-    if (response.error) {
-      throw new Error('Something went wrong!');
-    }
-
     setSavedBookIds([...savedBookIds, bookToSave.bookId]);
   } catch (err) {
     console.error(err);
